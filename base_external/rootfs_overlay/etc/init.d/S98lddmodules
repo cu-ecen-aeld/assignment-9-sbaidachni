@@ -9,27 +9,24 @@
 # Short-Description: Load and unload scull, faulty, hello kernel modules
 ### END INIT INFO
 
+cd /lib/modules/$(uname -r)/extra
+
 case "$1" in
   start)
-    echo "Loading scull kernel module..."
-    cd /lib
-    /usr/bin/scull_load
-    echo "Loading faulty kernel module..."
-    /usr/bin/module_load faulty
-    echo "Loading hello kernel module..."
+    echo "Loading misc-modules and scull drivers"
+    module_load faulty
     modprobe hello
+    scull_load
     ;;
   stop)
-    echo "Unloading scull kernel module..."
-    /usr/bin/scull_unload
-    echo "Unloading faulty kernel module..."
-    /usr/bin/module_unload faulty
-    echo "Unloading hello kernel module..."
+    echo "Unloading misc-modules and scull drivers"
+    scull_unload
     rmmod hello
+    module_unload faulty
     ;;
   *)
-    echo "Usage: $0 {start|stop}"
-    exit 1
-esac
+    echo "Usage: $0 {start | stop}"
+  exit 1
+  esac
 
 exit 0
