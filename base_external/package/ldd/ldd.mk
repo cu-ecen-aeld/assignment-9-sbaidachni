@@ -11,7 +11,7 @@ LDD_VERSION = 'c2aec0d6c1806dfdb84d98bd76501b73c241bc86'
 # with ssh keys and the automated build/test system.
 # Your site should start with git@github.com:
 LDD_SITE = 'git@github.com:cu-ecen-aeld/assignment-7-sbaidachni.git'
-LDD_METHOD = git
+LDD_SITE_METHOD = git
 LDD_GIT_SUBMODULES = YES
 
 LDD_LICENSE = GPL-2.0
