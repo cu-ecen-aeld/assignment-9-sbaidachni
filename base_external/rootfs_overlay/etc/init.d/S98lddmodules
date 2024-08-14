@@ -1,0 +1,35 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:          Buildroot
+# Required-Start:    $scull, $faulty, $hello
+# Required-Stop:     $scull, $faulty, $hello
+# Default-Start:     0 1 2
+# Default-Stop:      0 1 2
+# Short-Description: Load and unload scull, faulty, hello kernel modules
+### END INIT INFO
+
+case "$1" in
+  start)
+    echo "Loading scull kernel module..."
+    cd /lib
+    /usr/bin/scull_load
+    echo "Loading faulty kernel module..."
+    /usr/bin/module_load faulty
+    echo "Loading hello kernel module..."
+    modprobe hello
+    ;;
+  stop)
+    echo "Unloading scull kernel module..."
+    /usr/bin/scull_unload
+    echo "Unloading faulty kernel module..."
+    /usr/bin/module_unload faulty
+    echo "Unloading hello kernel module..."
+    rmmod hello
+    ;;
+  *)
+    echo "Usage: $0 {start|stop}"
+    exit 1
+esac
+
+exit 0
