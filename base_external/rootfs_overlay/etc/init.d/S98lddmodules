@@ -17,12 +17,14 @@ case "$1" in
     module_load faulty
     modprobe hello
     scull_load
+    aesdchar_load
     ;;
   stop)
     echo "Unloading misc-modules and scull drivers"
     scull_unload
     rmmod hello
     module_unload faulty
+    aesdchar_unload
     ;;
   *)
     echo "Usage: $0 {start | stop}"
